@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace cSharpExpert.GameObjects
 {
-    public class Star
+    public class Star : GameObject
     {
         private Transform transform;
         private SpriteRenderer spriteRenderer;
-        public Star() 
-        {
 
+        public Star()
+        {
         }
     }
 }
