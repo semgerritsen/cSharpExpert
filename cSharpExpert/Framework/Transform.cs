@@ -7,9 +7,9 @@ namespace cSharpExpert.Framework
 {
     public class Transform
     {
-        private Vector2 position = new Vector2(100,100);
+        private Vector2 position;
         private Vector2 origin;
-        private float rotation = 0;
+        private float rotation;
         private float scale;
 
         public Transform()

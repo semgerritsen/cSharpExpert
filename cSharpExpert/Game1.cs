@@ -6,9 +6,6 @@ using System;
 
 namespace cSharpExpert
 {
-
-
-
     public class Game1 : Game
     {
         readonly GraphicsDeviceManager _graphics;
@@ -17,6 +14,8 @@ namespace cSharpExpert
 
         Transform transform;
         SpriteRenderer spriteRenderer;
+
+        GameObject gameObject;
 
 
         public Game1()
@@ -33,6 +32,7 @@ namespace cSharpExpert
 
             transform = new Transform();
             spriteRenderer = new SpriteRenderer(_graphics, transform);
+            gameObject = new GameObject(spriteRenderer, transform);
 
             base.Initialize();
 
@@ -53,6 +53,7 @@ namespace cSharpExpert
 
             // TODO: Add your update logic here
             base.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -61,7 +62,7 @@ namespace cSharpExpert
 
             // TODO: Add your drawing code here's
             _spriteBatch.Begin();
-            spriteRenderer.Draw(_spriteBatch);
+            gameObject.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

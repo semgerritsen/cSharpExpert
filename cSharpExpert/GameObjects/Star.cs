@@ -15,9 +15,20 @@ namespace cSharpExpert.GameObjects
     {
         private Transform transform;
         private SpriteRenderer spriteRenderer;
-
-        public Star()
+        public Star(SpriteRenderer _renderer, Transform _transfrom) : base(_renderer, _transfrom)
         {
+        }
+
+        public override void SetRenderer()
+        {
+            base.SetRenderer();
+
+        }
+
+        public override void SetTransform()
+        {
+            base.SetTransform();
+
         }
     }
 }

@@ -14,12 +14,14 @@ namespace cSharpExpert.Framework
 
         private Texture2D texture;
         private Color color = Color.White;
-        private float layerDepth;
+        private float layerDepth = 1;
         private SpriteEffects spriteEffects;
         Transform transform;
 
+        private string tString;
 
-        public SpriteRenderer(GraphicsDeviceManager _graphics, Transform _transform)
+
+        public SpriteRenderer(GraphicsDeviceManager _graphics,Transform _transform)
         {
             graphics = _graphics;
             transform = _transform;
@@ -49,7 +51,11 @@ namespace cSharpExpert.Framework
             get { return spriteEffects; }
             set { spriteEffects = value; }
         }
-
+        public string TString
+        {
+            get { return tString; }
+            set { tString = value; }
+        }
 
         public void LoadContent(ContentManager _content)
         {
@@ -58,7 +64,7 @@ namespace cSharpExpert.Framework
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Draw(texture, new Vector2(100,100), null, Color.White, 1, new Vector2( texture.Width/2, texture.Height/2), 1, SpriteEffects.None, 1);
+            _spriteBatch.Draw(texture, Transform.Position, null, Color.White, Transform.Rotation, Transform.Origin, Transform.Scale, SpriteEffects.None, layerDepth);
         }
     }
 }
