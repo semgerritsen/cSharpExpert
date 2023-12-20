@@ -16,10 +16,8 @@ namespace cSharpExpert.Framework
         private Color color = Color.White;
         private float layerDepth = 1;
         private SpriteEffects spriteEffects;
-        Transform transform;
 
-        private string tString;
-
+        readonly Transform transform;
 
         public SpriteRenderer(GraphicsDeviceManager _graphics,Transform _transform)
         {
@@ -51,20 +49,13 @@ namespace cSharpExpert.Framework
             get { return spriteEffects; }
             set { spriteEffects = value; }
         }
-        public string TString
-        {
-            get { return tString; }
-            set { tString = value; }
-        }
-
         public void LoadContent(ContentManager _content)
         {
             texture = _content.Load<Texture2D>("StarIndicators");
         }
-
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Draw(texture, Transform.Position, null, Color.White, Transform.Rotation, Transform.Origin, Transform.Scale, SpriteEffects.None, layerDepth);
+            _spriteBatch.Draw(texture, Transform.Position, null, color, Transform.Rotation, Transform.Origin, Transform.Scale, spriteEffects, layerDepth);
         }
     }
 }

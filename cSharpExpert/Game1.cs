@@ -11,12 +11,10 @@ namespace cSharpExpert
         readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-
         Transform transform;
         SpriteRenderer spriteRenderer;
-
         GameObject gameObject;
-
+        SceneManager sceneManager;
 
         public Game1()
         {
@@ -32,7 +30,12 @@ namespace cSharpExpert
 
             transform = new Transform();
             spriteRenderer = new SpriteRenderer(_graphics, transform);
-            gameObject = new GameObject(spriteRenderer, transform);
+            gameObject = new GameObject(spriteRenderer, transform, _graphics);
+
+            sceneManager = new SceneManager(this, _graphics);
+
+            spriteRenderer.LoadContent(Content);
+            sceneManager.Initialize();
 
             base.Initialize();
 
@@ -41,7 +44,10 @@ namespace cSharpExpert
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            spriteRenderer.LoadContent(Content);
+
+
+            sceneManager.LoadContent(_spriteBatch, Content);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -54,6 +60,8 @@ namespace cSharpExpert
             // TODO: Add your update logic here
             base.Update(gameTime);
 
+            sceneManager.currentScene.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -62,7 +70,11 @@ namespace cSharpExpert
 
             // TODO: Add your drawing code here's
             _spriteBatch.Begin();
+
             gameObject.Draw(_spriteBatch);
+
+            sceneManager.currentScene.Draw(_spriteBatch);
+
             _spriteBatch.End();
             base.Draw(gameTime);
         }
