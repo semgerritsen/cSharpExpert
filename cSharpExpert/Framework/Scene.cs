@@ -1,31 +1,31 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace cSharpExpert.Framework
 {
     public class Scene
     {
-        private GraphicsDeviceManager graphics;
-        //private ContentManager Content;
+        private SceneManager sceneManager;
+        private SpriteFont spriteFont;
+
 
         public List<GameObject> stars = new List<GameObject>();
-        public Scene() 
+        public Scene(SceneManager _scene)
         {
-
+            sceneManager = _scene;
         }
-        //public List<GameObject> Stars
-        //{
-        //    get { return stars; }
-        //    set { stars = value; }
-        //}
-
-
+        public SceneManager SceneManager
+        {
+            get { return sceneManager; }
+            set { sceneManager = value; }
+        }
+        public SpriteFont SpriteFont
+        {
+            get { return spriteFont; }
+            set { spriteFont = value; }
+        }
         public virtual void Enter()
         {
             // excecutes on scene enter
@@ -42,18 +42,17 @@ namespace cSharpExpert.Framework
 
         public virtual void LoadContent(SpriteBatch _spriteBatch, ContentManager _content)
         {
+            spriteFont = _content.Load<SpriteFont>("font");
             for (int i = 0; i < stars.Count; i++)
             {
-                stars[i].LoadContent(_spriteBatch,_content);
-
+                stars[i].LoadContent(_spriteBatch, _content);
             }
         }
-        public virtual void Update(GameTime _gameTime) 
+        public virtual void Update(GameTime _gameTime)
         {
             for (int i = 0; i < stars.Count; i++)
             {
                 stars[i].Update(_gameTime);
-
             }
         }
         public virtual void Draw(SpriteBatch _spriteBatch)
@@ -61,7 +60,6 @@ namespace cSharpExpert.Framework
             for (int i = 0; i < stars.Count; i++)
             {
                 stars[i].Draw(_spriteBatch);
-
             }
         }
 

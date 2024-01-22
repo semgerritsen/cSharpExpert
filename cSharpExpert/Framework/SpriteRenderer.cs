@@ -1,31 +1,30 @@
-﻿using System;
-using System.Reflection;
-using System.Security.Cryptography;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace cSharpExpert.Framework
 {
     public class SpriteRenderer
     {
-        readonly GraphicsDeviceManager graphics;
-
         private Texture2D texture;
         private Color color = Color.White;
         private float layerDepth = 1;
         private SpriteEffects spriteEffects;
+        private string textureString;
 
-        readonly Transform transform;
+        public Transform transform;
 
-        public SpriteRenderer(GraphicsDeviceManager _graphics,Transform _transform)
+        public SpriteRenderer(Transform _transform, string _textureString, Color _color, float _layerDepth, SpriteEffects _spriteEffects)
         {
-            graphics = _graphics;
             transform = _transform;
+            color = _color;
+            textureString = _textureString;
+            layerDepth = _layerDepth;
+            spriteEffects = _spriteEffects;
         }
-        
-        public Texture2D Texture 
+
+        public Texture2D Texture
         {
             get { return texture; }
             set { texture = value; }
@@ -33,6 +32,7 @@ namespace cSharpExpert.Framework
         public Transform Transform
         {
             get { return transform; }
+
         }
         public Color Color
         {
@@ -49,10 +49,21 @@ namespace cSharpExpert.Framework
             get { return spriteEffects; }
             set { spriteEffects = value; }
         }
+
+        public string TextureString
+        {
+            get { return textureString; }
+            set { textureString = value; }
+        }
+        
+
         public void LoadContent(ContentManager _content)
         {
-            texture = _content.Load<Texture2D>("StarIndicators");
+            texture = _content.Load<Texture2D>(textureString);
+            Transform.Origin = new Vector2(Texture.Width / 2, Texture.Height / 2);
         }
+
+
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Draw(texture, Transform.Position, null, color, Transform.Rotation, Transform.Origin, Transform.Scale, spriteEffects, layerDepth);

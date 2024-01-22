@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
 
 namespace cSharpExpert.Framework
 {
@@ -11,9 +8,16 @@ namespace cSharpExpert.Framework
         private Vector2 origin;
         private float rotation;
         private float scale;
+        private float rotationSpeed;
 
-        public Transform()
+
+        public Transform(Vector2 _position, float _rotation, float _scale, /*Vector2 _origin,*/ float _rotationspeed)
         {
+            position = _position;
+            rotation = _rotation;
+            scale = _scale;
+            //origin = _origin;
+            rotationSpeed = _rotationspeed;
         }
 
         public Vector2 Position
@@ -31,7 +35,7 @@ namespace cSharpExpert.Framework
         public float Rotation
         {
             get { return rotation; }
-            set { rotation = value; }
+            set { rotation = MathHelper.ToRadians(value); }
         }
 
         public float Scale
@@ -39,15 +43,14 @@ namespace cSharpExpert.Framework
             get { return scale; }
             set { scale = value; }
         }
-
-        /// <summary>
-        /// Method to calculate rotation in degrees and convert it to radians
-        /// </summary>
-        /// <param name="_rotation">Add amount of rotation in degrees, preferably [0, 360]</param>
+        public float Speed
+        {
+            get { return rotationSpeed; }
+            set { rotationSpeed = value; }
+        }
         public void CalculateDegrees(float _rotation)
         {
             rotation = MathHelper.ToRadians(_rotation);
         }
     }
-
 }
