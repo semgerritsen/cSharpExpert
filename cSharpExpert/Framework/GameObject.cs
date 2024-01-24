@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace cSharpExpert.Framework
 {
@@ -11,6 +12,7 @@ namespace cSharpExpert.Framework
 
         private SpriteRenderer spriteRenderer;
         private Transform transform;
+
         public GameObject(SpriteRenderer _renderer, Transform _transfrom, GraphicsDeviceManager _graphics)
         {
             spriteRenderer = _renderer;

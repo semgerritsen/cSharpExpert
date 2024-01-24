@@ -31,14 +31,14 @@ namespace cSharpExpert.TestScenes
 
             for (int i = 0; i < 5; i++)
             {
-                Transform transform = CreateTransform(new Vector2(100 + 145 * i, 160), MathHelper.ToRadians(0 + 45 * i), 0.80f, 1);
+                Transform transform = CreateTransform(new Vector2(100 + 145 * i, 160), MathHelper.ToRadians(0 + 45 * i), 0.80f);
                 SpriteRenderer spriteRenderer = CreateSpriterenderer(transform, "LittleStar", Color.White, 1, SpriteEffects.None);
                 Star star1 = createStar(transform, spriteRenderer);
                 stars.Add(star1);
             }
             for (int i = 0; i < 5; i++)
             {
-                Transform transform = CreateTransform(new Vector2(100 + 145 * i, 340), MathHelper.ToRadians(180 + 45 * i), 0.80f, 1);
+                Transform transform = CreateTransform(new Vector2(100 + 145 * i, 340), MathHelper.ToRadians(180 + 45 * i), 0.80f);
                 SpriteRenderer spriteRenderer = CreateSpriterenderer(transform, "LittleStar", Color.White, 1, SpriteEffects.None);
                 Star star1 = createStar(transform, spriteRenderer);
                 stars.Add(star1);
@@ -70,9 +70,9 @@ namespace cSharpExpert.TestScenes
             _spriteBatch.DrawString(SpriteFont, "press NumPad2 to go to next scene", new Vector2(450, 440), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
 
         }
-        public Transform CreateTransform(Vector2 position, float rotation, float scale, float layerdepth)
+        public Transform CreateTransform(Vector2 position, float rotation, float scale)
         {
-            return new Transform(position, rotation, scale, layerdepth);
+            return new Transform(position, rotation, scale);
 
         }
         public SpriteRenderer CreateSpriterenderer(Transform transform, string name, Color color, float layerDepth, SpriteEffects spriteEffects)

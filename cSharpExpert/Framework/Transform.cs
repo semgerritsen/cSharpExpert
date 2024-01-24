@@ -8,16 +8,14 @@ namespace cSharpExpert.Framework
         private Vector2 origin;
         private float rotation;
         private float scale;
-        private float rotationSpeed;
 
 
-        public Transform(Vector2 _position, float _rotation, float _scale, /*Vector2 _origin,*/ float _rotationspeed)
+        public Transform(Vector2 _position, float _rotation, float _scale /*Vector2 _origin,*/)
         {
             position = _position;
             rotation = _rotation;
             scale = _scale;
             //origin = _origin;
-            rotationSpeed = _rotationspeed;
         }
 
         public Vector2 Position
@@ -42,11 +40,6 @@ namespace cSharpExpert.Framework
         {
             get { return scale; }
             set { scale = value; }
-        }
-        public float Speed
-        {
-            get { return rotationSpeed; }
-            set { rotationSpeed = value; }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace cSharpExpert.scenes
 
             for (int i = 0; i < 3; i++)
             {
-                Transform transform = CreateTransform(new Vector2(150 + 225 * i, 240), 0, 1, 1);
+                Transform transform = CreateTransform(new Vector2(150 + 225 * i, 240), 0, 1);
                 SpriteRenderer spriteRenderer = CreateSpriterenderer(transform, "LittleStar", Color.White, 1, SpriteEffects.None);
                 ScalerObject star1 = CreateScaler(transform, spriteRenderer, 1, 1 + 0.25f * i);
                 stars.Add(star1);
@@ -52,9 +52,9 @@ namespace cSharpExpert.scenes
             _spriteBatch.DrawString(SpriteFont, "scaler test scene: ScaleSpeed = 1 , scaleAmplitude is 1 + 0.25", new Vector2(10, 10), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
             _spriteBatch.DrawString(SpriteFont, "press NumPad6 to go to next scene", new Vector2(450, 440), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
         }
-        public Transform CreateTransform(Vector2 position, float rotation, float scale, float layerdepth)
+        public Transform CreateTransform(Vector2 position, float rotation, float scale)
         {
-            return new Transform(position, rotation, scale, layerdepth);
+            return new Transform(position, rotation, scale);
         }
         public SpriteRenderer CreateSpriterenderer(Transform transform, string name, Color color, float layerDepth, SpriteEffects spriteEffects)
         {

@@ -22,7 +22,7 @@ namespace cSharpExpert.scenes
 
             for (int i = 0; i < 3; i++)
             {
-                Transform transform = CreateTransform(new Vector2(200 + 200 * i, graphics.PreferredBackBufferHeight / 2), 0, 1, 1);
+                Transform transform = CreateTransform(new Vector2(200 + 200 * i, graphics.PreferredBackBufferHeight / 2), 0, 1);
                 SpriteRenderer spriteRenderer = CreateSpriterenderer(transform, "LittleStar", Color.White, 1, SpriteEffects.None);
                 ColorShifterObject star1 = createShifter(transform, spriteRenderer, 0.5f + 0.5f * i);
 
@@ -54,9 +54,9 @@ namespace cSharpExpert.scenes
             _spriteBatch.DrawString(SpriteFont, "press NumPad4 to go to next scene", new Vector2(450, 440), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
 
         }
-        public Transform CreateTransform(Vector2 position, float rotation, float scale, float layerdepth)
+        public Transform CreateTransform(Vector2 position, float rotation, float scale)
         {
-            return new Transform(position, rotation, scale, layerdepth);
+            return new Transform(position, rotation, scale);
         }
         public SpriteRenderer CreateSpriterenderer(Transform transform, string name, Color color, float layerDepth, SpriteEffects spriteEffects)
         {
