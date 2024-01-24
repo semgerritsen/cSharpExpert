@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace cSharpExpert.Framework
 {
@@ -55,7 +54,7 @@ namespace cSharpExpert.Framework
             get { return textureString; }
             set { textureString = value; }
         }
-        
+
 
         public void LoadContent(ContentManager _content)
         {

@@ -1,10 +1,6 @@
 ﻿using cSharpExpert.Framework;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace cSharpExpert.GameObjects
 {
@@ -33,10 +29,10 @@ namespace cSharpExpert.GameObjects
         {
             base.Update(_gameTime);
 
-            float time =+ (float)_gameTime.TotalGameTime.TotalSeconds * BounceSpeed;
+            float time = +(float)_gameTime.TotalGameTime.TotalSeconds * BounceSpeed;
             float sinValue = (float)Math.Sin(time * MathHelper.TwoPi) * bounceAmplitude;
 
-            Transform.Position = bounceMid + new Vector2(0, -sinValue * bounceAmplitude );
+            Transform.Position = bounceMid + new Vector2(0, -sinValue);
         }
     }
 }

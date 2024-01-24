@@ -48,9 +48,5 @@ namespace cSharpExpert.Framework
             get { return rotationSpeed; }
             set { rotationSpeed = value; }
         }
-        public void CalculateDegrees(float _rotation)
-        {
-            rotation = MathHelper.ToRadians(_rotation);
-        }
     }
 }

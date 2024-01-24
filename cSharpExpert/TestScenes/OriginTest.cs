@@ -1,18 +1,13 @@
 ﻿using cSharpExpert.Framework;
 using cSharpExpert.GameObjects;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace cSharpExpert.scenes
+namespace cSharpExpert.TestScenes
 {
-    public class StarScene : Scene
+    public class OriginTest : Scene
     {
         readonly GraphicsDeviceManager graphics;
         readonly ContentManager content;
@@ -25,7 +20,7 @@ namespace cSharpExpert.scenes
         private RotatorObject rotate;
         private ScalerObject scale;
 
-        public StarScene(SceneManager _scene) : base(_scene)
+        public OriginTest(SceneManager _scene) : base(_scene)
         {
 
         }
@@ -36,7 +31,7 @@ namespace cSharpExpert.scenes
 
             for (int i = 0; i < 3; i++)
             {
-                Transform transform = CreateTransform(new Vector2(150 + 225 * i, 240), 0, 1, 1);
+                Transform transform = CreateTransform(new Vector2(150 + 225 * i, 240), MathHelper.ToRadians(0), 1, 1);
                 SpriteRenderer spriteRenderer = CreateSpriterenderer(transform, "LittleStar", Color.White, 1, SpriteEffects.None);
                 Star star1 = createStar(transform, spriteRenderer);
                 stars.Add(star1);
@@ -55,14 +50,17 @@ namespace cSharpExpert.scenes
         public override void Update(GameTime _gameTime)
         {
             base.Update(_gameTime);
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            if (Keyboard.GetState().IsKeyDown(Keys.NumPad0))
             {
-                //SceneManager.ChangeScene(SceneManager.Bouncer);
+                SceneManager.ChangeScene(SceneManager.PositionTest);
             }
         }
         public override void Draw(SpriteBatch _spriteBatch)
         {
             base.Draw(_spriteBatch);
+            _spriteBatch.DrawString(SpriteFont, "Origin test scene: ", new Vector2(10, 10), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
+            _spriteBatch.DrawString(SpriteFont, "press NumPad0 to go to next scene", new Vector2(450, 440), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
+
         }
         public Transform CreateTransform(Vector2 position, float rotation, float scale, float layerdepth)
         {
@@ -74,7 +72,7 @@ namespace cSharpExpert.scenes
         }
         public Star createStar(Transform transform, SpriteRenderer spriteRenderer)
         {
-            return new Star(spriteRenderer, transform, graphics);
+            return new Star(spriteRenderer, transform, graphics) { };
         }
     }
 }

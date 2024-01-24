@@ -45,7 +45,7 @@ namespace cSharpExpert
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.LawnGreen);
+            GraphicsDevice.Clear(Color.White);
             _spriteBatch.Begin();
             sceneManager.CurrentScene.Draw(_spriteBatch);
             _spriteBatch.End();

@@ -1,11 +1,5 @@
 ﻿using cSharpExpert.Framework;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace cSharpExpert.GameObjects
 {
@@ -37,11 +31,11 @@ namespace cSharpExpert.GameObjects
             switch (direction)
             {
                 case "left":
-                    Transform.Rotation =- rotationsPerSecond * (float)_gameTime.TotalGameTime.TotalSeconds * 360;
+                    Transform.Rotation = -rotationsPerSecond * (float)_gameTime.TotalGameTime.TotalSeconds * 360;
                     break;
 
                 case "right":
-                    Transform.Rotation =+ rotationsPerSecond * (float)_gameTime.TotalGameTime.TotalSeconds * 360;
+                    Transform.Rotation = +rotationsPerSecond * (float)_gameTime.TotalGameTime.TotalSeconds * 360;
                     break;
             }
         }

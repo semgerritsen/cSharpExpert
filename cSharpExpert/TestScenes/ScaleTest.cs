@@ -5,13 +5,13 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace cSharpExpert.scenes
+namespace cSharpExpert.TestScenes
 {
-    public class ScalerScene : Scene
+    public class ScaleTest : Scene
     {
         readonly GraphicsDeviceManager graphics;
-
-        public ScalerScene(SceneManager _scene) : base(_scene)
+        readonly ContentManager content;
+        public ScaleTest(SceneManager _scene) : base(_scene)
         {
 
         }
@@ -22,9 +22,9 @@ namespace cSharpExpert.scenes
 
             for (int i = 0; i < 3; i++)
             {
-                Transform transform = CreateTransform(new Vector2(150 + 225 * i, 240), 0, 1, 1);
+                Transform transform = CreateTransform(new Vector2(150 + 225 * i, 240), MathHelper.ToRadians(0), 1 + 0.25f * i, 1);
                 SpriteRenderer spriteRenderer = CreateSpriterenderer(transform, "LittleStar", Color.White, 1, SpriteEffects.None);
-                ScalerObject star1 = CreateScaler(transform, spriteRenderer, 1, 1 + 0.25f * i);
+                Star star1 = createStar(transform, spriteRenderer);
                 stars.Add(star1);
             }
         }
@@ -41,16 +41,18 @@ namespace cSharpExpert.scenes
         public override void Update(GameTime _gameTime)
         {
             base.Update(_gameTime);
-            if (Keyboard.GetState().IsKeyDown(Keys.NumPad6))
+            if (Keyboard.GetState().IsKeyDown(Keys.NumPad3))
             {
-                SceneManager.ChangeScene(SceneManager.ColorShifter);
+                SceneManager.ChangeScene(SceneManager.BouncerScene);
+
             }
         }
         public override void Draw(SpriteBatch _spriteBatch)
         {
             base.Draw(_spriteBatch);
-            _spriteBatch.DrawString(SpriteFont, "scaler test scene: ScaleSpeed = 1 , scaleAmplitude is 1 + 0.25", new Vector2(10, 10), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
-            _spriteBatch.DrawString(SpriteFont, "press NumPad6 to go to next scene", new Vector2(450, 440), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
+            _spriteBatch.DrawString(SpriteFont, "Scale test scene: stars at 1, adds 0.25 each star", new Vector2(10, 10), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
+            _spriteBatch.DrawString(SpriteFont, "press NumPad3 to go to next scene", new Vector2(450, 440), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
+
         }
         public Transform CreateTransform(Vector2 position, float rotation, float scale, float layerdepth)
         {
@@ -60,9 +62,9 @@ namespace cSharpExpert.scenes
         {
             return new SpriteRenderer(transform, name, color, layerDepth, spriteEffects);
         }
-        public ScalerObject CreateScaler(Transform transform, SpriteRenderer spriteRenderer, float speed, float amplitude)
+        public Star createStar(Transform transform, SpriteRenderer spriteRenderer)
         {
-            return new ScalerObject(spriteRenderer, transform, graphics) { ScaleSpeed = speed, ScaleAmplitude = amplitude };
+            return new Star(spriteRenderer, transform, graphics) { };
         }
     }
 }

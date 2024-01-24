@@ -1,25 +1,30 @@
 ﻿using cSharpExpert.scenes;
+using cSharpExpert.TestScenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace cSharpExpert.Framework
 {
     public class SceneManager
     {
-        private Game1 game;
-        private GraphicsDeviceManager graphics;
+        readonly Game1 game;
+        readonly GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private ContentManager content;
+        readonly ContentManager content;
 
-        private BouncersScene bouncer;
-        private RotatorScene rotator;
-        private ScalerScene scaler;
-        private StarScene star;
+        private BouncersScene bouncerScene;
+        private RotatorScene rotatorScene;
+        private ScalerScene scalerScene;
+        private OriginTest origin;
+        private PositionTest position;
+        private RotationTest rotation;
+        private ScaleTest scale;
+        private ColorShifterScene colorShifter;
 
-        private List<Scene> allScenes = new List<Scene>();
+
+        readonly List<Scene> allScenes = new List<Scene>();
 
         private Scene currentScene;
 
@@ -31,49 +36,41 @@ namespace cSharpExpert.Framework
 
 
         }
-        public Scene CurrentScene
-        {
-            get { return currentScene; }
-            set { currentScene = value; }
-        }
-        public BouncersScene Bouncer 
-        {
-            get { return bouncer; }
-            set { bouncer = value; }
-        }
-        public RotatorScene Rotator
-        {
-            get { return rotator; }
-            set { rotator = value; }
-        }
-        public ScalerScene Scaler 
-        { 
-            get { return scaler; }
-            set { scaler = value; }
-        }
-        public StarScene Star 
-        {
-            get { return star; } 
-            set { star = value; } 
-        }
+        public Scene CurrentScene { get { return currentScene; } }
+        public BouncersScene BouncerScene { get { return bouncerScene; } }
+        public RotatorScene RotatorScene { get { return rotatorScene; } }
+        public ScalerScene ScalerScene { get { return scalerScene; } }
+        public OriginTest OriginTest { get { return origin; } }
+        public PositionTest PositionTest { get { return position; } }
+        public RotationTest RotationTest { get { return rotation; } }
+        public ScaleTest ScaleTest { get { return scale; } }
+        public ColorShifterScene ColorShifter { get { return colorShifter; } }
 
         public void Initialize()
         {
-            bouncer = new BouncersScene(this);
-            rotator = new RotatorScene(this);
-            scaler = new ScalerScene(this);
-            star = new StarScene(this);
+            bouncerScene = new BouncersScene(this);
+            rotatorScene = new RotatorScene(this);
+            scalerScene = new ScalerScene(this);
+            origin = new OriginTest(this);
+            position = new PositionTest(this, graphics);
+            rotation = new RotationTest(this);
+            scale = new ScaleTest(this);
+            colorShifter = new ColorShifterScene(this, graphics);
 
-            allScenes.Add(bouncer);
-            allScenes.Add(rotator); 
-            allScenes.Add(scaler);
-            allScenes.Add(star);
+            allScenes.Add(bouncerScene);
+            allScenes.Add(rotatorScene);
+            allScenes.Add(scalerScene);
+            allScenes.Add(origin);
+            allScenes.Add(position);
+            allScenes.Add(rotation);
+            allScenes.Add(scale);
+            allScenes.Add(colorShifter);
 
             for (int i = 0; i < allScenes.Count; i++)
             {
                 allScenes[i].Initialize();
             }
-            currentScene = bouncer;
+            currentScene = origin;
 
         }
         public void LoadContent(SpriteBatch _spriteBatch, ContentManager _content)
@@ -88,8 +85,6 @@ namespace cSharpExpert.Framework
         public void Update(GameTime _gametime)
         {
             currentScene.Update(_gametime);
-
-
         }
         public void Draw(SpriteBatch _spriteBatch)
         {

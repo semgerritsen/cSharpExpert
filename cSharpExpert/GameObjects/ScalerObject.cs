@@ -1,11 +1,6 @@
 ﻿using cSharpExpert.Framework;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace cSharpExpert.GameObjects
 {
@@ -34,7 +29,7 @@ namespace cSharpExpert.GameObjects
             base.Update(_gameTime);
 
             time += (float)_gameTime.ElapsedGameTime.TotalSeconds;
-            float sinValue = (( MathF.Sin(time * (scaleSpeed * MathHelper.TwoPi)) +1) * 0.5f )  * scaleAmplitude;
+            float sinValue = ((MathF.Sin(time * (scaleSpeed * MathHelper.TwoPi)) + 1) * 0.5f) * scaleAmplitude;
 
             Transform.Scale = defaultScale * sinValue;
         }
