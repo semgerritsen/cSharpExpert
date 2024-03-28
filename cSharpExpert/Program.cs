@@ -1,3 +1,3 @@
 ﻿
-using var game = new cSharpExpert.Game1();
+using var game = new Assignment3.Game1();
 game.Run();

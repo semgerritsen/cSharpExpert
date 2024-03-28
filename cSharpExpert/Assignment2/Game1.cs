@@ -1,8 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Assignment2.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace cSharpExpert
+namespace Assignment2
 {
     public class Game1 : Game
     {
@@ -10,6 +11,7 @@ namespace cSharpExpert
 
         private SpriteBatch _spriteBatch;
 
+        SceneManager sceneManager;
 
         public Game1()
         {
@@ -20,12 +22,15 @@ namespace cSharpExpert
 
         protected override void Initialize()
         {
+            sceneManager = new SceneManager(this, _graphics);
+            sceneManager.Initialize();
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            sceneManager.LoadContent(_spriteBatch, Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -33,12 +38,14 @@ namespace cSharpExpert
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             base.Update(gameTime);
+            sceneManager.CurrentScene.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
             _spriteBatch.Begin();
+            sceneManager.CurrentScene.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
