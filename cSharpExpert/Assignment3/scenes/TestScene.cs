@@ -19,6 +19,9 @@ namespace Assignment3.scenes
         public override void LoadContent(SpriteBatch _spriteBatch, ContentManager _content)
         {
             base.LoadContent(_spriteBatch, _content);
+            _spriteBatch.Begin();
+            _spriteBatch.DrawString(SpriteFont, "rotator test scene: Rotatespeed = 1 + 0.25, direction is rechts", new Vector2(10, 10), Color.Black, 0, Vector2.Zero, 1.25f, SpriteEffects.None, 1);
+            _spriteBatch.End();
         }
 
         public override void Update(GameTime _gameTime)
